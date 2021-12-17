@@ -8,9 +8,12 @@ class NavBar extends StatelessWidget {
     return navLinks.map((text) {
       return Padding(
         padding: EdgeInsets.only(left: 18),
-        child: Text(
-          text,
-          style: TextStyle(fontFamily: "Montserrat-Bold"),
+        child: TextButton(
+          child: Text(
+            text.toString(),
+            style: TextStyle(fontFamily: "Montserrat-Bold"),
+          ),
+          onPressed: () {},
         ),
       );
     }).toList();
@@ -48,39 +51,44 @@ class NavBar extends StatelessWidget {
           ),
           if (!ResponsiveLayout.isSmallScreen(context))
             Row(
-              children: [...navItem()]..add(InkWell(
-                    child: Container(
-                  margin: EdgeInsets.only(left: 20),
-                  width: 120,
-                  height: 40,
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(colors: [
-                      Color(0xFFC86DD7),
-                      Color(0xFF3023AE),
-                    ], begin: Alignment.bottomRight, end: Alignment.topLeft),
-                    borderRadius: BorderRadius.circular(20),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Color(0xFF6078ea).withOpacity(.3),
-                        offset: Offset(0, 8),
-                        blurRadius: 8,
-                      )
-                    ],
-                  ),
-                  child: Material(
-                    color: Colors.transparent,
-                    child: Center(
-                      child: Text(
-                        "Login",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 18,
-                            letterSpacing: 1,
-                            fontFamily: "Montserrat-Bold"),
+              children: [
+                ...navItem(),
+                SizedBox(
+                  width: 20,
+                )
+              ]..add(InkWell(
+                  onTap: () {},
+                  child: Container(
+                    width: 120,
+                    height: 40,
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(colors: [
+                        Color(0xFFC86DD7),
+                        Color(0xFF3023AE),
+                      ], begin: Alignment.bottomRight, end: Alignment.topLeft),
+                      borderRadius: BorderRadius.circular(20),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Color(0xFF6078ea).withOpacity(.3),
+                          offset: Offset(0, 8),
+                          blurRadius: 8,
+                        )
+                      ],
+                    ),
+                    child: InkWell(
+                      hoverColor: Colors.transparent,
+                      child: Center(
+                        child: Text(
+                          "Login",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                              letterSpacing: 1,
+                              fontFamily: "Montserrat-Bold"),
+                        ),
                       ),
                     ),
-                  ),
-                ))),
+                  ))),
             )
           else
             Image.network(
